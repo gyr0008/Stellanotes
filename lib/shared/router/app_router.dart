@@ -30,6 +30,7 @@ import '../../features/security/security_settings_page.dart';
 import '../../features/calendar/calendar_page.dart';
 import '../../features/share/share_card_page.dart';
 import '../../features/backup/backup_page.dart';
+import '../../features/ai/ai_settings_page.dart';
 
 /// 路由配置
 final routerProvider = Provider<GoRouter>((ref) {
@@ -204,6 +205,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/settings/backup',
         builder: (context, state) => const BackupPage(),
+      ),
+
+      // Phase 10 AI 设置
+      GoRoute(
+        path: '/settings/ai',
+        builder: (context, state) => const AISettingsPage(),
       ),
     ],
   );

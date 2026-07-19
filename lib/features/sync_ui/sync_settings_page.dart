@@ -435,6 +435,16 @@ class SyncSettingsPage extends ConsumerWidget {
             subtitle: '备份和恢复日记数据',
             route: '/settings/backup',
           ),
+          const SizedBox(height: 12),
+
+          _buildFeatureCard(
+            context,
+            ref,
+            icon: Icons.auto_awesome,
+            title: 'AI 智能标签',
+            subtitle: '自动分析情绪和标签',
+            route: '/settings/ai',
+          ),
         ],
       ),
     );
