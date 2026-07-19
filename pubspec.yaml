@@ -63,6 +63,11 @@ dependencies:
   # 日历视图
   table_calendar: ^3.1.2
 
+  # 图片附件
+  image_picker: ^1.0.7
+  flutter_image_compress: ^2.3.0
+  photo_view: ^0.15.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
