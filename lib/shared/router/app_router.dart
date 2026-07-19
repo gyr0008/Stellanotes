@@ -29,6 +29,7 @@ import '../../features/security/pin_setup_page.dart';
 import '../../features/security/security_settings_page.dart';
 import '../../features/calendar/calendar_page.dart';
 import '../../features/share/share_card_page.dart';
+import '../../features/backup/backup_page.dart';
 
 /// 路由配置
 final routerProvider = Provider<GoRouter>((ref) {
@@ -197,6 +198,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           final id = int.parse(state.pathParameters['id']!);
           return ShareCardPage(entryId: id);
         },
+      ),
+
+      // Phase 10 数据备份
+      GoRoute(
+        path: '/settings/backup',
+        builder: (context, state) => const BackupPage(),
       ),
     ],
   );

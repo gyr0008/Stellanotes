@@ -425,6 +425,16 @@ class SyncSettingsPage extends ConsumerWidget {
             subtitle: '密码锁、生物识别',
             route: '/settings/security',
           ),
+          const SizedBox(height: 12),
+
+          _buildFeatureCard(
+            context,
+            ref,
+            icon: Icons.backup,
+            title: '数据备份',
+            subtitle: '备份和恢复日记数据',
+            route: '/settings/backup',
+          ),
         ],
       ),
     );
