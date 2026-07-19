@@ -28,6 +28,7 @@ import '../../features/security/app_lock.dart';
 import '../../features/security/pin_setup_page.dart';
 import '../../features/security/security_settings_page.dart';
 import '../../features/calendar/calendar_page.dart';
+import '../../features/share/share_card_page.dart';
 
 /// 路由配置
 final routerProvider = Provider<GoRouter>((ref) {
@@ -187,6 +188,15 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/calendar',
         builder: (context, state) => const CalendarPage(),
+      ),
+
+      // Phase 10 分享卡片
+      GoRoute(
+        path: '/journal/:id/share',
+        builder: (context, state) {
+          final id = int.parse(state.pathParameters['id']!);
+          return ShareCardPage(entryId: id);
+        },
       ),
     ],
   );
