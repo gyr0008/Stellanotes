@@ -415,6 +415,16 @@ class SyncSettingsPage extends ConsumerWidget {
             subtitle: '应用内检查和安装新版本',
             route: '/settings/auto-update',
           ),
+          const SizedBox(height: 12),
+
+          _buildFeatureCard(
+            context,
+            ref,
+            icon: Icons.lock,
+            title: '隐私与安全',
+            subtitle: '密码锁、生物识别',
+            route: '/settings/security',
+          ),
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'shared/router/app_router.dart';
 import 'core/theme/theme_provider.dart';
+import 'features/security/app_lock.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,11 +22,13 @@ class StargazerApp extends ConsumerWidget {
     final themeNotifier = ref.watch(appThemeProvider.notifier);
     final themeData = themeNotifier.toMaterialTheme();
 
-    return MaterialApp.router(
-      title: 'Stargazer',
-      debugShowCheckedModeBanner: false,
-      theme: themeData,
-      routerConfig: router,
+    return AppLock(
+      child: MaterialApp.router(
+        title: 'Stargazer',
+        debugShowCheckedModeBanner: false,
+        theme: themeData,
+        routerConfig: router,
+      ),
     );
   }
 }

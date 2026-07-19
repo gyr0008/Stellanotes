@@ -24,6 +24,9 @@ import '../../features/shared/data_export_page.dart';
 import '../../features/shared/auto_update_service.dart';
 import '../../features/search/search_page.dart';
 import '../../features/search/quick_capture_service.dart';
+import '../../features/security/app_lock.dart';
+import '../../features/security/pin_setup_page.dart';
+import '../../features/security/security_settings_page.dart';
 
 /// 路由配置
 final routerProvider = Provider<GoRouter>((ref) {
@@ -167,6 +170,16 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/settings/auto-update',
         builder: (context, state) => const AutoUpdateSettingsPage(),
+      ),
+
+      // Phase 10 隐私锁
+      GoRoute(
+        path: '/settings/security',
+        builder: (context, state) => const SecuritySettingsPage(),
+      ),
+      GoRoute(
+        path: '/settings/security/setup-pin',
+        builder: (context, state) => const PinSetupPage(),
       ),
     ],
   );
