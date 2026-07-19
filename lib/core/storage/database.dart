@@ -53,6 +53,26 @@ class EntryTodos extends Table {
   IntColumn get todoId => integer()();
 }
 
+// ─── 习惯打卡 ───────────────────────────────────────────
+class Habits extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get name => text()();
+  TextColumn get icon => text().withDefault(const Constant('star'))();
+  TextColumn get color => text().withDefault(const Constant('#4CAF50'))();
+  IntColumn get frequency => integer().withDefault(const Constant(1))(); // 每天几次
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+  BoolColumn get isActive => boolean().withDefault(const Constant(true))();
+}
+
+// ─── 习惯打卡记录 ───────────────────────────────────────
+class HabitLogs extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get habitId => integer()();
+  DateTimeColumn get date => dateTime()();
+  IntColumn get count => integer().withDefault(const Constant(0))();
+  DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+}
+
 @DriftDatabase(tables: [
   Entries,
   Todos,
@@ -60,10 +80,27 @@ class EntryTodos extends Table {
   Tags,
   EntryTags,
   EntryTodos,
+  Habits,
+  HabitLogs,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase(QueryExecutor e) : super(e);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration {
+    return MigrationStrategy(
+      onCreate: (Migrator m) {
+        return m.createAll();
+      },
+      onUpgrade: (Migrator m, int from, int to) async {
+        if (from < 2) {
+          await m.createTable(habits);
+          await m.createTable(habitLogs);
+        }
+      },
+    );
+  }
 }

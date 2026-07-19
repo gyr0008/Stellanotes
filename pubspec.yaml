@@ -72,6 +72,9 @@ dependencies:
   archive: ^3.6.1
   encrypt: ^5.0.3
 
+  # 语音输入
+  speech_to_text: ^6.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
