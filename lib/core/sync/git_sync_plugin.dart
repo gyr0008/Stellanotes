@@ -166,12 +166,14 @@ class GitSyncPlugin implements SyncPlugin {
     try {
       switch (resolution) {
         case ConflictResolution.useLocal:
-          await _gitManager.runGitRaw('checkout --theirs .');
+          // merge 冲突中 --ours 指向当前分支（本地）版本，保留本地应选 --ours
+          await _gitManager.runGitRaw('checkout --ours .');
           await _gitManager.runGitRaw('add -A');
           await _gitManager.runGitRaw('commit -m "resolve: use local"');
           break;
         case ConflictResolution.useRemote:
-          await _gitManager.runGitRaw('checkout --ours .');
+          // merge 冲突中 --theirs 指向被合并进来的远程分支版本，保留远程应选 --theirs
+          await _gitManager.runGitRaw('checkout --theirs .');
           await _gitManager.runGitRaw('add -A');
           await _gitManager.runGitRaw('commit -m "resolve: use remote"');
           break;

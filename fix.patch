@@ -1,0 +1,291 @@
+﻿diff --git a/.github/workflows/build-android.yml b/.github/workflows/build-android.yml
+index 01dfea1..9c8fbd7 100644
+--- a/.github/workflows/build-android.yml
++++ b/.github/workflows/build-android.yml
+@@ -4,6 +4,8 @@ on:
+   push:
+     tags:
+       - 'v*'
++    branches:
++      - 'main'
+   workflow_dispatch:
+ 
+ jobs:
+@@ -28,6 +30,12 @@ jobs:
+       - name: Get dependencies
+         run: flutter pub get
+ 
++      - name: Analyze
++        run: flutter analyze
++
++      - name: Test
++        run: flutter test
++
+       - name: Build APK
+         run: flutter build apk --release
+ 
+diff --git a/.github/workflows/build-windows.yml b/.github/workflows/build-windows.yml
+index b416806..4db34e2 100644
+--- a/.github/workflows/build-windows.yml
++++ b/.github/workflows/build-windows.yml
+@@ -4,6 +4,8 @@ on:
+   push:
+     tags:
+       - 'v*'
++    branches:
++      - 'main'
+   workflow_dispatch:
+ 
+ jobs:
+@@ -22,6 +24,12 @@ jobs:
+       - name: Get dependencies
+         run: flutter pub get
+ 
++      - name: Analyze
++        run: flutter analyze
++
++      - name: Test
++        run: flutter test
++
+       - name: Build Windows
+         run: flutter build windows --release
+ 
+diff --git a/lib/core/sync/git_sync_plugin.dart b/lib/core/sync/git_sync_plugin.dart
+index c34aafb..2192e0b 100644
+--- a/lib/core/sync/git_sync_plugin.dart
++++ b/lib/core/sync/git_sync_plugin.dart
+@@ -166,12 +166,14 @@ class GitSyncPlugin implements SyncPlugin {
+     try {
+       switch (resolution) {
+         case ConflictResolution.useLocal:
+-          await _gitManager.runGitRaw('checkout --theirs .');
++          // merge 鍐茬獊涓?--ours 鎸囧悜褰撳墠鍒嗘敮锛堟湰鍦帮級鐗堟湰锛屼繚鐣欐湰鍦板簲閫?--ours
++          await _gitManager.runGitRaw('checkout --ours .');
+           await _gitManager.runGitRaw('add -A');
+           await _gitManager.runGitRaw('commit -m "resolve: use local"');
+           break;
+         case ConflictResolution.useRemote:
+-          await _gitManager.runGitRaw('checkout --ours .');
++          // merge 鍐茬獊涓?--theirs 鎸囧悜琚悎骞惰繘鏉ョ殑杩滅▼鍒嗘敮鐗堟湰锛屼繚鐣欒繙绋嬪簲閫?--theirs
++          await _gitManager.runGitRaw('checkout --theirs .');
+           await _gitManager.runGitRaw('add -A');
+           await _gitManager.runGitRaw('commit -m "resolve: use remote"');
+           break;
+diff --git a/lib/core/sync/webdav_sync_plugin.dart b/lib/core/sync/webdav_sync_plugin.dart
+index 4252d87..600ba67 100644
+--- a/lib/core/sync/webdav_sync_plugin.dart
++++ b/lib/core/sync/webdav_sync_plugin.dart
+@@ -52,7 +52,7 @@ class WebDAVSyncPlugin implements SyncPlugin {
+       await _createRemoteDir(_remotePath);
+ 
+       _connected = true;
+-      return SyncResult.ok(message: '宸茶繛鎺ュ埌 $_baseUrl');
++      return SyncResult.ok(message: '宸茶繛鎺ュ埌 $_baseUrl锛堝悓姝ュ姛鑳藉紑鍙戜腑锛屾殏鏈疄鐜帮級');
+     } catch (e) {
+       return SyncResult.error('杩炴帴澶辫触: $e');
+     }
+@@ -67,50 +67,27 @@ class WebDAVSyncPlugin implements SyncPlugin {
+ 
+   @override
+   Future<SyncResult> push() async {
+-    if (!_connected) return SyncResult.error('鏈繛鎺?WebDAV 鏈嶅姟鍣?);
+-
+-    try {
+-      // TODO: 瀹炵幇鏂囦欢涓婁紶閫昏緫
+-      // 1. 閬嶅巻鏈湴 vault 鐩綍
+-      // 2. 瀵规瘮杩滅▼鏂囦欢淇敼鏃堕棿
+-      // 3. 涓婁紶鍙樻洿鐨勬枃浠?
+-      return SyncResult.ok(message: '鎺ㄩ€佹垚鍔燂紙寰呭疄鐜帮級');
+-    } catch (e) {
+-      return SyncResult.error('鎺ㄩ€佸け璐? $e');
+-    }
++    // WebDAV 鏂囦欢鍚屾灏氭湭瀹炵幇锛氱姝㈣皫鎶ユ垚鍔燂紝閬垮厤鐢ㄦ埛璇互涓烘暟鎹凡澶囦唤銆?
++    // 鍚屾鑳藉姏鏈氨缁墠锛屾棤璁烘槸鍚﹀凡杩炴帴閮藉瀹炶繑鍥為敊璇紝缁濅笉澹扮О鎴愬姛銆?
++    return SyncResult.error('WebDAV 鎺ㄩ€佸皻鏈疄鐜帮紝鏈湴鏁版嵁鏈涓婁紶');
+   }
+ 
+   @override
+   Future<SyncResult> pull() async {
+-    if (!_connected) return SyncResult.error('鏈繛鎺?WebDAV 鏈嶅姟鍣?);
+-
+-    try {
+-      // TODO: 瀹炵幇鏂囦欢涓嬭浇閫昏緫
+-      // 1. 鑾峰彇杩滅▼鏂囦欢鍒楄〃鍜屼慨鏀规椂闂?
+-      // 2. 瀵规瘮鏈湴鏂囦欢
+-      // 3. 涓嬭浇杩滅▼鏇存柊鐨勬枃浠?
+-      return SyncResult.ok(message: '鎷夊彇鎴愬姛锛堝緟瀹炵幇锛?);
+-    } catch (e) {
+-      return SyncResult.error('鎷夊彇澶辫触: $e');
+-    }
++    // WebDAV 鏂囦欢鍚屾灏氭湭瀹炵幇锛氱姝㈣皫鎶ユ垚鍔?
++    return SyncResult.error('WebDAV 鎷夊彇灏氭湭瀹炵幇锛屾湭鑾峰彇鍒拌繙绋嬫暟鎹?);
+   }
+ 
+   @override
+   Future<SyncResult> sync() async {
+-    if (!_connected) return SyncResult.error('鏈繛鎺?WebDAV 鏈嶅姟鍣?);
+-
+-    try {
+-      // 鍏?pull 鍐?push
+-      final pullResult = await pull();
+-      if (!pullResult.success) return pullResult;
++    // 鍏?pull 鍐?push锛堜簩鑰呭潎鏈疄鐜帮紝浼氬瀹炶繑鍥為敊璇紝缁濅笉璋庢姤鎴愬姛锛?
++    final pullResult = await pull();
++    if (!pullResult.success) return pullResult;
+ 
+-      final pushResult = await push();
+-      if (!pushResult.success) return pushResult;
++    final pushResult = await push();
++    if (!pushResult.success) return pushResult;
+ 
+-      return SyncResult.ok(message: '鍚屾瀹屾垚');
+-    } catch (e) {
+-      return SyncResult.error('鍚屾澶辫触: $e');
+-    }
++    return SyncResult.ok(message: '鍚屾瀹屾垚');
+   }
+ 
+   @override
+@@ -119,14 +96,14 @@ class WebDAVSyncPlugin implements SyncPlugin {
+       return const SyncStatus(state: SyncState.offline);
+     }
+ 
+-    // TODO: 瀹炵幇鐘舵€佹鏌?
+-    return const SyncStatus(state: SyncState.idle);
++    // WebDAV 鍚屾鏈疄鐜帮紝濡傚疄鍙嶆槧涓洪敊璇姸鎬侊紝閬垮厤浼鎴?宸插氨缁?
++    return const SyncStatus(state: SyncState.error);
+   }
+ 
+   @override
+   Future<SyncResult> resolveConflict(ConflictResolution resolution) async {
+-    // WebDAV 鍩轰簬鏂囦欢淇敼鏃堕棿锛岀畝鍗曠瓥鐣ワ細鏂版枃浠惰鐩栨棫鏂囦欢
+-    return SyncResult.ok(message: '鍐茬獊宸茶В鍐筹紙浣跨敤鏈€鏂扮増鏈級');
++    // 鎸変慨鏀规椂闂磋鐩栫殑鍐茬獊绛栫暐灏氭湭瀹炵幇锛岀姝㈣皫鎶ュ凡瑙ｅ喅
++    return SyncResult.error('WebDAV 鍐茬獊瑙ｅ喅灏氭湭瀹炵幇');
+   }
+ 
+   // 鈹€鈹€鈹€ 鍐呴儴鏂规硶 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+diff --git a/test/sync_regression_test.dart b/test/sync_regression_test.dart
+new file mode 100644
+index 0000000..7810d1b
+--- /dev/null
++++ b/test/sync_regression_test.dart
+@@ -0,0 +1,118 @@
++import 'package:flutter_test/flutter_test.dart';
++import 'package:stargazer/core/storage/git_repo_manager.dart';
++import 'package:stargazer/core/sync/git_sync_plugin.dart';
++import 'package:stargazer/core/sync/sync_plugin.dart';
++import 'package:stargazer/core/sync/webdav_sync_plugin.dart';
++
++/// D1 鍥炲綊鐢ㄧ殑 GitRepoManager 鏇胯韩锛氳褰曟墍鏈?git 鍛戒护锛屼笉鐪熸鎵ц銆?
++/// 鐢ㄤ簬閿佸畾"鍐茬獊瑙ｅ喅鏂瑰悜"杩欎竴鏇惧弽杞殑缂洪櫡銆?
++class _FakeGitRepoManager extends GitRepoManager {
++  _FakeGitRepoManager(super.repoPath);
++
++  final List<String> commands = [];
++
++  @override
++  Future<void> init() async {}
++
++  @override
++  Future<List<String>> getRemotes() async => [];
++
++  @override
++  Future<void> removeRemote(String name) async {}
++
++  @override
++  Future<void> addRemote(String name, String url) async {}
++
++  @override
++  Future<String> pull(String remote, String branch) async => '';
++
++  @override
++  Future<String> push(String remote, String branch) async => '';
++
++  @override
++  Future<String> runGitRaw(String args) async {
++    commands.add(args);
++    return '';
++  }
++}
++
++void main() {
++  // 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
++  // D1锛欸it 鍐茬獊瑙ｅ喅鏂瑰悜鍥炲綊
++  // 鍘嗗彶缂洪櫡锛歶seLocal 璇敤 --theirs銆乽seRemote 璇敤 --ours锛?
++  // 瀵艰嚧"淇濈暀鏈湴"瀹為檯涓㈠純鏈湴銆?淇濈暀杩滅▼"瀹為檯涓㈠純杩滅▼锛堟暟鎹涪澶憋級銆?
++  // 淇鍚庡繀椤伙細useLocal 鈫?--ours锛寀seRemote 鈫?--theirs銆?
++  // 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
++  group('D1 Git 鍐茬獊瑙ｅ喅鏂瑰悜鍥炲綊', () {
++    late _FakeGitRepoManager mgr;
++    late GitSyncPlugin plugin;
++
++    setUp(() {
++      mgr = _FakeGitRepoManager('/tmp/fake-vault');
++      plugin = GitSyncPlugin(mgr);
++    });
++
++    Future<void> _connect() => plugin.connect({
++          'remoteUrl': 'https://example.com/repo.git',
++          'remoteName': 'origin',
++          'branch': 'main',
++        });
++
++    test('connect 鎴愬姛骞剁疆涓哄凡杩炴帴', () async {
++      final result = await _connect();
++      expect(result.success, isTrue);
++    });
++
++    test('useLocal 蹇呴』淇濈暀鏈湴鐗堟湰锛?-ours锛?, () async {
++      await _connect();
++      await plugin.resolveConflict(ConflictResolution.useLocal);
++      expect(mgr.commands, contains('checkout --ours .'),
++          reason: 'D1 鍥炲綊澶辫触锛氫繚鐣欐湰鍦板簲浣跨敤 --ours');
++      expect(mgr.commands, isNot(contains('checkout --theirs .')),
++          reason: 'D1 鍥炲綊澶辫触锛氫繚鐣欐湰鍦扮粷涓嶈兘璇敤 --theirs锛堜細瀵艰嚧鏈湴淇敼涓㈠け锛?);
++    });
++
++    test('useRemote 蹇呴』淇濈暀杩滅▼鐗堟湰锛?-theirs锛?, () async {
++      await _connect();
++      await plugin.resolveConflict(ConflictResolution.useRemote);
++      expect(mgr.commands, contains('checkout --theirs .'),
++          reason: 'D1 鍥炲綊澶辫触锛氫繚鐣欒繙绋嬪簲浣跨敤 --theirs');
++      expect(mgr.commands, isNot(contains('checkout --ours .')),
++          reason: 'D1 鍥炲綊澶辫触锛氫繚鐣欒繙绋嬬粷涓嶈兘璇敤 --ours锛堜細瀵艰嚧杩滅▼淇敼涓㈠け锛?);
++    });
++  });
++
++  // 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
++  // D2锛歐ebDAV 鍚屾"鍋囨垚鍔?鍥炲綊
++  // 鍘嗗彶缂洪櫡锛歱ush/pull/sync/resolveConflict 鍧囦负 TODO 妗╁嵈杩斿洖鎴愬姛锛?
++  // 鐢ㄦ埛璇互涓烘暟鎹凡澶囦唤銆備慨澶嶅悗杩欎簺鎿嶄綔蹇呴』濡傚疄杩斿洖閿欒锛岀粷涓?success銆?
++  // 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
++  group('D2 WebDAV 鍚屾鍋囨垚鍔熷洖褰?, () {
++    late WebDAVSyncPlugin plugin;
++
++    setUp(() => plugin = WebDAVSyncPlugin());
++
++    test('鎵€鏈夊悓姝ユ搷浣滃潎涓嶈皫鎶ユ垚鍔?, () async {
++      final results = await Future.wait([
++        plugin.push(),
++        plugin.pull(),
++        plugin.sync(),
++        plugin.resolveConflict(ConflictResolution.useLocal),
++      ]);
++      for (final r in results) {
++        expect(r.success, isFalse,
++            reason: 'D2 鍥炲綊澶辫触锛氭湭瀹炵幇鐨勫悓姝ョ粷涓嶈兘杩斿洖 success');
++      }
++    });
++
++    test('status 濡傚疄鍙嶆槧涓洪敊璇€?, () async {
++      final status = await plugin.status();
++      expect(status.state, SyncState.error);
++    });
++
++    test('鎺ㄩ€佽繑鍥?灏氭湭瀹炵幇"鎻愮ず鑰岄潪"鎴愬姛"', () async {
++      final push = await plugin.push();
++      expect(push.message, contains('灏氭湭瀹炵幇'));
++    });
++  });
++}

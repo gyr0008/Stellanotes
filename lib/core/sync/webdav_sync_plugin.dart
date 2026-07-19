@@ -52,7 +52,7 @@ class WebDAVSyncPlugin implements SyncPlugin {
       await _createRemoteDir(_remotePath);
 
       _connected = true;
-      return SyncResult.ok(message: '已连接到 $_baseUrl');
+      return SyncResult.ok(message: '已连接到 $_baseUrl（同步功能开发中，暂未实现）');
     } catch (e) {
       return SyncResult.error('连接失败: $e');
     }
@@ -67,50 +67,27 @@ class WebDAVSyncPlugin implements SyncPlugin {
 
   @override
   Future<SyncResult> push() async {
-    if (!_connected) return SyncResult.error('未连接 WebDAV 服务器');
-
-    try {
-      // TODO: 实现文件上传逻辑
-      // 1. 遍历本地 vault 目录
-      // 2. 对比远程文件修改时间
-      // 3. 上传变更的文件
-      return SyncResult.ok(message: '推送成功（待实现）');
-    } catch (e) {
-      return SyncResult.error('推送失败: $e');
-    }
+    // WebDAV 文件同步尚未实现：禁止谎报成功，避免用户误以为数据已备份。
+    // 同步能力未就绪前，无论是否已连接都如实返回错误，绝不声称成功。
+    return SyncResult.error('WebDAV 推送尚未实现，本地数据未被上传');
   }
 
   @override
   Future<SyncResult> pull() async {
-    if (!_connected) return SyncResult.error('未连接 WebDAV 服务器');
-
-    try {
-      // TODO: 实现文件下载逻辑
-      // 1. 获取远程文件列表和修改时间
-      // 2. 对比本地文件
-      // 3. 下载远程更新的文件
-      return SyncResult.ok(message: '拉取成功（待实现）');
-    } catch (e) {
-      return SyncResult.error('拉取失败: $e');
-    }
+    // WebDAV 文件同步尚未实现：禁止谎报成功
+    return SyncResult.error('WebDAV 拉取尚未实现，未获取到远程数据');
   }
 
   @override
   Future<SyncResult> sync() async {
-    if (!_connected) return SyncResult.error('未连接 WebDAV 服务器');
+    // 先 pull 再 push（二者均未实现，会如实返回错误，绝不谎报成功）
+    final pullResult = await pull();
+    if (!pullResult.success) return pullResult;
 
-    try {
-      // 先 pull 再 push
-      final pullResult = await pull();
-      if (!pullResult.success) return pullResult;
+    final pushResult = await push();
+    if (!pushResult.success) return pushResult;
 
-      final pushResult = await push();
-      if (!pushResult.success) return pushResult;
-
-      return SyncResult.ok(message: '同步完成');
-    } catch (e) {
-      return SyncResult.error('同步失败: $e');
-    }
+    return SyncResult.ok(message: '同步完成');
   }
 
   @override
@@ -119,14 +96,14 @@ class WebDAVSyncPlugin implements SyncPlugin {
       return const SyncStatus(state: SyncState.offline);
     }
 
-    // TODO: 实现状态检查
-    return const SyncStatus(state: SyncState.idle);
+    // WebDAV 同步未实现，如实反映为错误状态，避免伪装成"已就绪"
+    return const SyncStatus(state: SyncState.error);
   }
 
   @override
   Future<SyncResult> resolveConflict(ConflictResolution resolution) async {
-    // WebDAV 基于文件修改时间，简单策略：新文件覆盖旧文件
-    return SyncResult.ok(message: '冲突已解决（使用最新版本）');
+    // 按修改时间覆盖的冲突策略尚未实现，禁止谎报已解决
+    return SyncResult.error('WebDAV 冲突解决尚未实现');
   }
 
   // ─── 内部方法 ───────────────────────────────────────
