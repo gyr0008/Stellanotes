@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import '../theme/app_theme.dart';
+import '../../core/theme/app_theme.dart';
 
 /// 毛玻璃卡片组件
 ///

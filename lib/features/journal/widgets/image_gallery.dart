@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import '../../core/storage/image_repository.dart';
+import '../../../core/storage/image_repository.dart';
 
 /// 图片浏览器
 ///

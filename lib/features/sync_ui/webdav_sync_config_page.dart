@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/sync/webdav_sync_plugin.dart';
-import '../providers/sync_provider.dart';
+import 'providers/sync_provider.dart';
 import '../../shared/widgets/frosted_card.dart';
 import '../../core/theme/theme_provider.dart';
 

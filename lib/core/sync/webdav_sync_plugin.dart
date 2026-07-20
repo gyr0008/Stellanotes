@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:path/path.dart' as p;
-import '../sync_plugin.dart';
+import 'sync_plugin.dart';
 
 /// WebDAV 同步插件
 ///

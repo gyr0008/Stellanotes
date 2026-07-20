@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
-import '../../shared/widgets/frosted_card.dart';
+import '../../../shared/widgets/frosted_card.dart';
 
 /// 语音输入组件
 ///

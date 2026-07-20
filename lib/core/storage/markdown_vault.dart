@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-import '../utils/markdown_utils.dart';
+import '../../shared/utils/markdown_utils.dart';
 
 /// Markdown 文件仓库管理器
 ///

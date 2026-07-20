@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../core/theme/app_theme.dart';
-import '../../core/theme/theme_provider.dart';
-import '../../shared/widgets/frosted_card.dart';
+import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/theme_provider.dart';
+import '../../../shared/widgets/frosted_card.dart';
 
 /// 主题切换过渡动画组件
 ///

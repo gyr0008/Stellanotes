@@ -4,7 +4,7 @@ import '../../core/sync/sync_plugin.dart';
 import '../../core/sync/git_sync_plugin.dart';
 import '../../core/storage/storage_providers.dart';
 import '../../core/storage/git_repo_manager.dart';
-import '../providers/sync_provider.dart';
+import 'providers/sync_provider.dart';
 import '../../shared/widgets/frosted_card.dart';
 import '../../core/theme/theme_provider.dart';
 
