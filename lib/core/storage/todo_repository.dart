@@ -6,7 +6,7 @@ part 'todo_repository.g.dart';
 @DriftAccessor(tables: [Todos, EntryTodos, Entries])
 class TodoRepository extends DatabaseAccessor<AppDatabase>
     with _$TodoRepositoryMixin {
-  TodoRepository(AppDatabase db) : super(db);
+  TodoRepository(super.db);
 
   // ─── 查询 ───────────────────────────────────────────
   Future<List<Todo>> getAllTodos() => select(todos).get();

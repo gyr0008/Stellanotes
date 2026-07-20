@@ -1,9 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../core/storage/storage_providers.dart';
-import '../../core/storage/entry_repository.dart';
 import '../../shared/widgets/frosted_card.dart';
 import '../../features/journal/journal_page.dart';
 import 'share_card_generator.dart';

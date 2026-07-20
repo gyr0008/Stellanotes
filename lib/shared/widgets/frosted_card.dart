@@ -143,13 +143,13 @@ class GlassPreview extends StatelessWidget {
           // 模拟星空背景
           Positioned.fill(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    const Color(0xFF0A0E27),
-                    const Color(0xFF1A1A3E),
+                    Color(0xFF0A0E27),
+                    Color(0xFF1A1A3E),
                   ],
                 ),
               ),

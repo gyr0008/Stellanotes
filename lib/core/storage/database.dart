@@ -84,7 +84,7 @@ class HabitLogs extends Table {
   HabitLogs,
 ])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase(QueryExecutor e) : super(e);
+  AppDatabase(super.e);
 
   @override
   int get schemaVersion => 2;

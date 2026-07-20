@@ -52,19 +52,19 @@ void main() {
       plugin = GitSyncPlugin(mgr);
     });
 
-    Future<SyncResult> _connect() => plugin.connect({
+    Future<SyncResult> connect() => plugin.connect({
           'remoteUrl': 'https://example.com/repo.git',
           'remoteName': 'origin',
           'branch': 'main',
         });
 
     test('connect 成功并置为已连接', () async {
-      final result = await _connect();
+      final result = await connect();
       expect(result.success, isTrue);
     });
 
     test('useLocal 必须保留本地版本（--ours）', () async {
-      await _connect();
+      await connect();
       await plugin.resolveConflict(ConflictResolution.useLocal);
       expect(mgr.commands, contains('checkout --ours .'),
           reason: 'D1 回归失败：保留本地应使用 --ours');
@@ -73,7 +73,7 @@ void main() {
     });
 
     test('useRemote 必须保留远程版本（--theirs）', () async {
-      await _connect();
+      await connect();
       await plugin.resolveConflict(ConflictResolution.useRemote);
       expect(mgr.commands, contains('checkout --theirs .'),
           reason: 'D1 回归失败：保留远程应使用 --theirs');

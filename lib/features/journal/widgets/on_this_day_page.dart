@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/storage/storage_providers.dart';
-import '../../../core/storage/entry_repository.dart';
 import '../../../shared/widgets/frosted_card.dart';
 import '../../../core/theme/theme_provider.dart';
 import 'package:stargazer/core/storage/database.dart';
@@ -50,7 +49,7 @@ class OnThisDayPage extends ConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    '历史上今天的 ${month}月${day}日',
+                    '历史上今天的 $month月$day日',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.5),
                       fontSize: 16,

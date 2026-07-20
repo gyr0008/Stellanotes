@@ -397,12 +397,12 @@ class _UpdateDialogState extends ConsumerState<_UpdateDialog> {
             ] else if (_isComplete) ...[
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.check_circle,
                     color: Colors.green,
                     size: 20,
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Text(
                     '下载完成，准备安装',
                     style: TextStyle(

@@ -78,6 +78,8 @@ dependencies:
   # 语音输入
   speech_to_text: ^6.6.0
 
+  # 时区（通知定时调度，供 quick_action_notifications 使用）
+  timezone: ^0.9.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

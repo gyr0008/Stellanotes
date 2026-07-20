@@ -23,8 +23,6 @@ import '../../features/shared/android_settings_page.dart';
 import '../../features/shared/data_export_page.dart';
 import '../../features/shared/auto_update_service.dart';
 import '../../features/search/search_page.dart';
-import '../../features/search/quick_capture_service.dart';
-import '../../features/security/app_lock.dart';
 import '../../features/security/pin_setup_page.dart';
 import '../../features/security/security_settings_page.dart';
 import '../../features/calendar/calendar_page.dart';

@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:path/path.dart' as p;
 import 'sync_plugin.dart';
 import '../storage/git_repo_manager.dart';
 
@@ -118,7 +116,7 @@ class GitSyncPlugin implements SyncPlugin {
       // 3. 如果有冲突，返回冲突信息
       final hasChanges = await _gitManager.hasUncommittedChanges();
       if (hasChanges) {
-        return SyncResult(
+        return const SyncResult(
           success: false,
           message: '存在冲突，需要手动合并',
           conflicts: [

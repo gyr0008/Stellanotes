@@ -394,7 +394,7 @@ class _VisualizerPainter extends CustomPainter {
       ..style = PaintingStyle.stroke;
 
     final path = Path();
-    final barCount = 20;
+    const barCount = 20;
     final barWidth = size.width / barCount;
 
     for (int i = 0; i < barCount; i++) {

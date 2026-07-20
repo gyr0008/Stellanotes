@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -79,12 +78,12 @@ class ShareCardGenerator {
 
       case CardTemplate.literary:
         // 文艺渐变背景
-        final gradient = LinearGradient(
+        const gradient = LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            const Color(0xFF667eea),
-            const Color(0xFF764ba2),
+            Color(0xFF667eea),
+            Color(0xFF764ba2),
           ],
         );
         paint.shader = gradient.createShader(Rect.fromLTWH(0, 0, size.width, size.height));
@@ -93,12 +92,12 @@ class ShareCardGenerator {
 
       case CardTemplate.starry:
         // 星空渐变背景
-        final gradient = LinearGradient(
+        const gradient = LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            const Color(0xFF0A0E27),
-            const Color(0xFF1A1A3E),
+            Color(0xFF0A0E27),
+            Color(0xFF1A1A3E),
           ],
         );
         paint.shader = gradient.createShader(Rect.fromLTWH(0, 0, size.width, size.height));

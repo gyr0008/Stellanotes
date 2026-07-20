@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stargazer/core/storage/storage_providers.dart';
-import 'package:stargazer/core/storage/entry_repository.dart';
-import 'package:stargazer/core/storage/todo_repository.dart';
 import 'package:stargazer/core/storage/database.dart';
 
 /// 待办管理 Provider

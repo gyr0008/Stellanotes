@@ -86,13 +86,13 @@ class _AppLockState extends ConsumerState<AppLock> {
     // 显示锁屏界面
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              const Color(0xFF0A0E27),
-              const Color(0xFF1A1A3E),
+              Color(0xFF0A0E27),
+              Color(0xFF1A1A3E),
             ],
           ),
         ),

@@ -118,11 +118,11 @@ class _SecuritySettingsPageState extends ConsumerState<SecuritySettingsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                const Row(
                   children: [
-                    const Icon(Icons.info_outline, color: Colors.white70),
-                    const SizedBox(width: 12),
-                    const Text(
+                    Icon(Icons.info_outline, color: Colors.white70),
+                    SizedBox(width: 12),
+                    Text(
                       '说明',
                       style: TextStyle(
                         fontSize: 16,

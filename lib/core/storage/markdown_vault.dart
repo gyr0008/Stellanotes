@@ -38,7 +38,7 @@ class MarkdownVault {
   /// 格式：vault/YYYY/MM/YYYY-MM-DD-title.md
   Future<File> _getEntryFile(DateTime date, String title) async {
     final yearDir = Directory(p.join(_vaultDir.path, '${date.year}'));
-    final monthDir = Directory(p.join(yearDir.path, '${date.month.toString().padLeft(2, '0')}'));
+    final monthDir = Directory(p.join(yearDir.path, date.month.toString().padLeft(2, '0')));
 
     if (!await yearDir.exists()) await yearDir.create(recursive: true);
     if (!await monthDir.exists()) await monthDir.create(recursive: true);

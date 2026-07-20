@@ -1,6 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stargazer/core/storage/storage_providers.dart';
-import 'package:stargazer/core/storage/git_repo_manager.dart';
 import 'package:stargazer/core/sync/sync_plugin.dart';
 
 /// 同步状态 Provider

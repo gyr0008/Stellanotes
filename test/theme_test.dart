@@ -1,12 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:ui';
 import 'package:stargazer/core/theme/app_theme.dart';
 
 void main() {
   group('StarfieldTheme', () {
     test('serialization roundtrip', () {
-      final original = PresetThemes.deepSpace;
+      const original = PresetThemes.deepSpace;
       final json = original.toJson();
       final restored = StarfieldTheme.fromJson(json);
 
@@ -19,7 +18,7 @@ void main() {
     });
 
     test('copyWith creates new instance', () {
-      final original = PresetThemes.deepSpace;
+      const original = PresetThemes.deepSpace;
       final modified = original.copyWith(
         name: '自定义',
         diaryColor: original.diaryColor.copyWith(color: const Color(0xFFFF0000)),
@@ -41,7 +40,7 @@ void main() {
     });
 
     test('serialization roundtrip', () {
-      final original = GlassEffect.frosted;
+      const original = GlassEffect.frosted;
       final json = original.toJson();
       final restored = GlassEffect.fromJson(json);
 

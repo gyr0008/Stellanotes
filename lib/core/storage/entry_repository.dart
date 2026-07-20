@@ -6,7 +6,7 @@ part 'entry_repository.g.dart';
 @DriftAccessor(tables: [Entries, EntryTags, Tags, EntryTodos, Todos, Relations])
 class EntryRepository extends DatabaseAccessor<AppDatabase>
     with _$EntryRepositoryMixin {
-  EntryRepository(AppDatabase db) : super(db);
+  EntryRepository(super.db);
 
   // ─── 查询 ───────────────────────────────────────────
   Future<List<Entry>> getAllEntries() => select(entries).get();

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../core/storage/storage_providers.dart';
-import '../../core/storage/entry_repository.dart';
-import '../../core/storage/todo_repository.dart';
 import '../../shared/widgets/frosted_card.dart';
 import 'package:stargazer/core/theme/theme_provider.dart';
 
@@ -118,7 +115,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
               ),
               markersMaxCount: 3,
             ),
-            headerStyle: HeaderStyle(
+            headerStyle: const HeaderStyle(
               formatButtonVisible: true,
               titleCentered: true,
               formatButtonShowsNext: false,

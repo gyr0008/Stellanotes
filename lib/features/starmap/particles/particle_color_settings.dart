@@ -485,7 +485,7 @@ class _ParticlePreviewState extends State<_ParticlePreview>
     if (!mounted) return;
 
     // 在预览区域生成一些示例粒子
-    final types = RelationType.values;
+    const types = RelationType.values;
     final type = types[_controller.value.toInt() % types.length];
 
     _particleSystem.emitBetween(

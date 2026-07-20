@@ -201,11 +201,11 @@ class _BackupPageState extends ConsumerState<BackupPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Icon(Icons.check_circle, color: Colors.green),
-                      const SizedBox(width: 12),
-                      const Text(
+                      SizedBox(width: 12),
+                      Text(
                         '上次备份',
                         style: TextStyle(
                           fontSize: 16,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/theme_provider.dart';
 import '../../shared/widgets/frosted_card.dart';
@@ -23,7 +22,7 @@ class _AndroidSettingsPageState extends ConsumerState<AndroidSettingsPage> {
   bool _dailyReminderEnabled = false;
   TimeOfDay _reminderTime = const TimeOfDay(hour: 21, minute: 0);
   bool _todoReminderEnabled = true;
-  bool _batteryOptimizationExempt = false;
+  final bool _batteryOptimizationExempt = false;
 
   @override
   Widget build(BuildContext context) {

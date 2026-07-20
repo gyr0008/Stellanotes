@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/theme_provider.dart';
-import '../../../shared/widgets/frosted_card.dart';
 import 'package:stargazer/core/theme/app_theme.dart';
 
 /// Markdown 渲染器
@@ -182,7 +181,7 @@ class MarkdownRenderer extends ConsumerWidget {
         // 链接
         spans.add(TextSpan(
           text: match.group(8),
-          style: style.merge(TextStyle(
+          style: style.merge(const TextStyle(
             color: Colors.blueAccent,
             decoration: TextDecoration.underline,
           )),
@@ -267,7 +266,7 @@ class MarkdownRenderer extends ConsumerWidget {
           left: BorderSide(color: theme.diaryColor.color, width: 3),
         ),
         color: Colors.white.withOpacity(0.03),
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topRight: Radius.circular(8),
           bottomRight: Radius.circular(8),
         ),

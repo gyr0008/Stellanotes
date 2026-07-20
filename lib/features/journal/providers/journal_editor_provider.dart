@@ -1,9 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stargazer/core/storage/storage_providers.dart';
-import 'package:stargazer/core/storage/markdown_vault.dart';
-import 'package:stargazer/core/storage/git_repo_manager.dart';
-import 'package:stargazer/core/storage/entry_repository.dart';
-import 'package:stargazer/core/storage/todo_repository.dart';
 import 'package:stargazer/shared/utils/markdown_utils.dart';
 import 'package:drift/drift.dart';
 import 'package:stargazer/core/storage/database.dart';

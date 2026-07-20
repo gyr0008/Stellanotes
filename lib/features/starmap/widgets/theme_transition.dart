@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/theme_provider.dart';
-import '../../../shared/widgets/frosted_card.dart';
 
 /// 主题切换过渡动画组件
 ///
@@ -64,10 +62,10 @@ class StarColorTransition extends StatelessWidget {
           height: radius * 2,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: color?.withOpacity(0.9 * twinkle),
+            color: color.withOpacity(0.9 * twinkle),
             boxShadow: [
               BoxShadow(
-                color: color?.withOpacity(0.3 * twinkle) ?? Colors.transparent,
+                color: color.withOpacity(0.3 * twinkle) ?? Colors.transparent,
                 blurRadius: 8,
               ),
             ],

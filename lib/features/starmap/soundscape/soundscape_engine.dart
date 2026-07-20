@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// 声音场景类型
@@ -52,7 +51,7 @@ class SoundscapeScene {
     description: '低频嗡鸣 + 偶尔的信号声',
     type: SoundscapeType.deepSpace,
     icon: Icons.rocket_launch,
-    color: Color(0xFF1A237E),
+    color: const Color(0xFF1A237E),
     tracks: [
       SoundTrack(
         name: '宇宙嗡鸣',
@@ -80,7 +79,7 @@ class SoundscapeScene {
     description: '雨声 + 翻书声 + 远处雷声',
     type: SoundscapeType.rainyNight,
     icon: Icons.nights_stay,
-    color: Color(0xFF37474F),
+    color: const Color(0xFF37474F),
     tracks: [
       SoundTrack(
         name: '雨声',
@@ -108,7 +107,7 @@ class SoundscapeScene {
     description: '鸟鸣 + 溪流 + 风声',
     type: SoundscapeType.forestMorning,
     icon: Icons.park,
-    color: Color(0xFF2E7D32),
+    color: const Color(0xFF2E7D32),
     tracks: [
       SoundTrack(
         name: '鸟鸣',
@@ -136,7 +135,7 @@ class SoundscapeScene {
     description: '柴火噼啪 + 虫鸣',
     type: SoundscapeType.campfire,
     icon: Icons.local_fire_department,
-    color: Color(0xFFBF360C),
+    color: const Color(0xFFBF360C),
     tracks: [
       SoundTrack(
         name: '柴火',
@@ -164,7 +163,7 @@ class SoundscapeScene {
     description: '水泡声 + 鲸鱼叫声',
     type: SoundscapeType.underwater,
     icon: Icons.waves,
-    color: Color(0xFF01579B),
+    color: const Color(0xFF01579B),
     tracks: [
       SoundTrack(
         name: '水泡',

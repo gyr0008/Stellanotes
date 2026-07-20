@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/storage/storage_providers.dart';
-import '../../../core/storage/entry_repository.dart';
 import '../providers/journal_editor_provider.dart';
-import '../../../shared/widgets/frosted_card.dart';
 
 class JournalEditorPage extends ConsumerStatefulWidget {
   final int? entryId; // null = 新建

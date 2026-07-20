@@ -298,14 +298,14 @@ class _MoodWeatherStatsPageState extends ConsumerState<MoodWeatherStatsPage> {
       body: _loading
           ? const Center(child: CircularProgressIndicator())
           : _weatherStats.isEmpty
-              ? Center(
+              ? const Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.cloud_off, size: 64, color: Colors.white24),
-                      const SizedBox(height: 16),
-                      const Text('还没有天气数据', style: TextStyle(color: Colors.white54)),
-                      const SizedBox(height: 8),
+                      Icon(Icons.cloud_off, size: 64, color: Colors.white24),
+                      SizedBox(height: 16),
+                      Text('还没有天气数据', style: TextStyle(color: Colors.white54)),
+                      SizedBox(height: 8),
                       Text(
                         '写日记时选择心情，系统会自动生成天气统计',
                         style: TextStyle(color: Colors.white38, fontSize: 13),
@@ -318,7 +318,7 @@ class _MoodWeatherStatsPageState extends ConsumerState<MoodWeatherStatsPage> {
   }
 
   Widget _buildWeatherList(StarfieldTheme theme) {
-    final allTypes = WeatherType.values;
+    const allTypes = WeatherType.values;
     final total = _weatherStats.values.fold(0, (sum, count) => sum + count);
 
     return ListView(

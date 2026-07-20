@@ -7,7 +7,6 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import '../../../core/theme/theme_provider.dart';
 import '../../../shared/widgets/frosted_card.dart';
-import '../../../core/storage/storage_providers.dart';
 import 'package:stargazer/core/theme/app_theme.dart';
 
 /// 每日星空壁纸服务

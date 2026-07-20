@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/starmap_provider.dart';
@@ -126,7 +125,7 @@ class _StarmapCanvasState extends ConsumerState<StarmapCanvas>
 
   void spawnMeteor(StarNode newNode) {
     final startX = _random.nextDouble() * MediaQuery.of(context).size.width;
-    final startY = -50.0;
+    const startY = -50.0;
 
     setState(() {
       _meteors.add(Meteor(
@@ -550,7 +549,7 @@ class StarfieldPainter extends CustomPainter {
         start.dy + (target.dy - start.dy) * meteorProgress,
       );
 
-      final tailLength = 50.0;
+      const tailLength = 50.0;
       final tailDirection = (target - start).normalize();
       final tailStart = currentPos - tailDirection * tailLength;
 
