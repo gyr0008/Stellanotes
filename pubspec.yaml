@@ -52,7 +52,7 @@ dependencies:
   
   # 自动更新
   http: ^1.2.0
-  package_info_plus: ^5.0.1
+  package_info_plus: ^8.0.0
   open_file: ^3.3.2
 
   # 隐私锁
