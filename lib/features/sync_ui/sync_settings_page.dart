@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'git_sync_config_page.dart';
+import 'webdav_sync_config_page.dart';
 import '../../core/sync/sync_plugin.dart';
 import '../../core/sync/git_sync_plugin.dart';
 import '../../core/sync/webdav_sync_plugin.dart';
@@ -370,7 +372,7 @@ class SyncSettingsPage extends ConsumerWidget {
           _buildFeatureCard(
             context,
             ref,
-            icon: Icons.constellation,
+            icon: Icons.auto_awesome,
             title: '星座发现',
             subtitle: '自动聚类你的记忆',
             route: '/starmap/constellation-naming',

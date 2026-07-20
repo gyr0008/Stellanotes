@@ -55,7 +55,7 @@ class StarColorTransition extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<Color>(
-      tween: ColorTween(begin: fromColor, end: toColor),
+      tween: Tween<Color>(begin: fromColor, end: toColor),
       duration: const Duration(milliseconds: 800),
       curve: Curves.easeInOut,
       builder: (context, color, child) {

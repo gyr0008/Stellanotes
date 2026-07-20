@@ -8,6 +8,7 @@ import 'dart:io';
 import '../../../core/theme/theme_provider.dart';
 import '../../../shared/widgets/frosted_card.dart';
 import '../../../core/storage/storage_providers.dart';
+import 'package:stargazer/core/theme/app_theme.dart';
 
 /// 每日星空壁纸服务
 class DailyWallpaperService {
@@ -97,7 +98,6 @@ class _WallpaperGalleryPageState extends ConsumerState<WallpaperGalleryPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('星空画廊'),
-        subtitle: const Text('每日星空壁纸'),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/theme_provider.dart';
 import '../../../shared/widgets/frosted_card.dart';
+import 'package:stargazer/core/theme/app_theme.dart';
 
 /// Markdown 渲染器
 /// 支持标题、粗体、斜体、代码块、表格、任务列表、链接、图片

@@ -188,7 +188,7 @@ class SoundscapeScene {
   );
 
   /// 所有预设场景
-  static const List<SoundscapeScene> allScenes = [
+  static final List<SoundscapeScene> allScenes = [
     deepSpace,
     rainyNight,
     forestMorning,

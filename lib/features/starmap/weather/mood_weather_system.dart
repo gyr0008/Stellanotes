@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/theme_provider.dart';
 import '../../../core/storage/storage_providers.dart';
+import 'package:stargazer/core/theme/app_theme.dart';
 
 /// 天气类型枚举
 enum WeatherType {
@@ -242,7 +243,7 @@ class MoodWeatherSystem {
       case WeatherType.shaky: return Icons.air;
       case WeatherType.foggy: return Icons.blur_on;
       case WeatherType.stormy: return Icons.flash_on;
-      case WeatherType.hazy: return Icons.haze;
+      case WeatherType.hazy: return Icons.cloud;
     }
   }
 

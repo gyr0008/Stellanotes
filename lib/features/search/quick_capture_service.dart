@@ -4,6 +4,9 @@ import '../../core/storage/storage_providers.dart';
 import '../../core/storage/database.dart';
 import '../../core/theme/theme_provider.dart';
 import '../../shared/widgets/frosted_card.dart';
+import 'package:stargazer/core/storage/entry_repository.dart';
+import 'package:stargazer/core/storage/todo_repository.dart';
+import 'package:drift/drift.dart' hide Column;
 
 /// 快速捕获服务
 class QuickCaptureService {

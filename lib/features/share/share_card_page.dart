@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../core/storage/storage_providers.dart';
 import '../../core/storage/entry_repository.dart';
 import '../../shared/widgets/frosted_card.dart';
+import '../../features/journal/journal_page.dart';
 import 'share_card_generator.dart';
+import 'package:stargazer/core/theme/theme_provider.dart';
 
 /// 分享卡片预览页面
 class ShareCardPage extends ConsumerStatefulWidget {

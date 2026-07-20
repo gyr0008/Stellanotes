@@ -6,6 +6,7 @@ import 'package:stargazer/core/storage/markdown_vault.dart';
 import 'package:stargazer/core/storage/git_repo_manager.dart';
 import 'package:stargazer/core/theme/app_theme.dart';
 import 'package:stargazer/features/starmap/providers/force_layout.dart';
+import 'package:stargazer/core/theme/theme_provider.dart';
 
 /// 星空图谱数据 Provider
 final starmapDataProvider = FutureProvider<StarmapData>((ref) async {

@@ -353,12 +353,12 @@ class _UpdateDialogState extends ConsumerState<_UpdateDialog> {
             const SizedBox(height: 20),
             
             if (widget.versionInfo.changelog.isNotEmpty) ...[
-              const Text(
+              Text(
                 '更新内容',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: Colors.white87,
+                  color: Colors.white.withOpacity(0.87),
                 ),
               ),
               const SizedBox(height: 8),
@@ -395,7 +395,7 @@ class _UpdateDialogState extends ConsumerState<_UpdateDialog> {
                 ),
               ),
             ] else if (_isComplete) ...[
-              const Row(
+              Row(
                 children: [
                   Icon(
                     Icons.check_circle,
@@ -407,7 +407,7 @@ class _UpdateDialogState extends ConsumerState<_UpdateDialog> {
                     '下载完成，准备安装',
                     style: TextStyle(
                       fontSize: 13,
-                      color: Colors.white87,
+                      color: Colors.white.withOpacity(0.87),
                     ),
                   ),
                 ],

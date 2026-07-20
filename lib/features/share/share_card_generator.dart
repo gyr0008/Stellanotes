@@ -17,7 +17,7 @@ class ShareCardGenerator {
     required DateTime date,
     required CardTemplate template,
   }) async {
-    final recorder = PictureRecorder();
+    final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
     const size = Size(1080, 1920);
 
@@ -189,7 +189,7 @@ class ShareCardGenerator {
       textDirection: TextDirection.ltr,
     );
     datePainter.layout();
-    datePainter.paint(canvas, const Offset(80, size.height - 200));
+    datePainter.paint(canvas, Offset(80, size.height - 200));
 
     // 品牌水印
     final brandPainter = TextPainter(

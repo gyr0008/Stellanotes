@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/theme_provider.dart';
 import '../../../shared/widgets/frosted_card.dart';
 import 'soundscape_engine.dart';
+import 'package:stargazer/core/theme/app_theme.dart';
 
 /// 声音景观页面
 class SoundscapePage extends ConsumerStatefulWidget {

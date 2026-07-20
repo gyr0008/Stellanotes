@@ -1,9 +1,13 @@
-// Stargazer - 星空背景 Fragment Shader
-// 用于渲染深空渐变背景 + 闪烁星点粒子
+#version 320 es
+precision highp float;
+
+#include <flutter/runtime_effect.glsl>
 
 uniform float uTime;
 uniform vec2 uResolution;
 uniform float uParticleDensity;
+
+layout(location = 0) out vec4 fragColor;
 
 // 伪随机函数
 float hash(vec2 p) {
@@ -22,7 +26,8 @@ float noise(vec2 p) {
   return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
 
-void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+void main() {
+  vec2 fragCoord = FlutterFragCoord();
   vec2 uv = fragCoord / uResolution;
 
   // 深空渐变背景
@@ -54,8 +59,4 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
   vec3 finalColor = bgColor + vec3(starField);
   fragColor = vec4(finalColor, 1.0);
-}
-
-void main() {
-  mainImage(gl_FragColor, gl_FragCoord.xy);
 }

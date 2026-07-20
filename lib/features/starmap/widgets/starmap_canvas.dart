@@ -556,8 +556,8 @@ class StarfieldPainter extends CustomPainter {
 
       final tailPaint = Paint()
         ..shader = LinearGradient(
-          begin: tailStart,
-          end: currentPos,
+          begin: Alignment(tailStart.dx, tailStart.dy),
+          end: Alignment(currentPos.dx, currentPos.dy),
           colors: [
             Colors.transparent,
             theme.diaryColor.color.withOpacity(0.6),

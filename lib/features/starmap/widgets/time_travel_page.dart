@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/theme_provider.dart';
 import '../../../shared/widgets/frosted_card.dart';
 import '../../../core/storage/storage_providers.dart';
+import 'package:stargazer/core/theme/app_theme.dart';
 
 /// 时间旅行模式页面
 class TimeTravelPage extends ConsumerStatefulWidget {
@@ -158,7 +159,7 @@ class _TimeTravelPageState extends ConsumerState<TimeTravelPage>
     final milestones = [
       _Milestone('第一颗星星', Icons.star, theme.diaryColor.color),
       _Milestone('第 10 颗', Icons.star_border, theme.todoColor.color),
-      _Milestone('第一个星座', Icons.constellation, theme.tagColor.color),
+      _Milestone('第一个星座', Icons.auto_awesome, theme.tagColor.color),
     ];
 
     return SizedBox(

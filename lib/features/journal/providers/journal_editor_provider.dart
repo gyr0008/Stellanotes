@@ -5,6 +5,8 @@ import 'package:stargazer/core/storage/git_repo_manager.dart';
 import 'package:stargazer/core/storage/entry_repository.dart';
 import 'package:stargazer/core/storage/todo_repository.dart';
 import 'package:stargazer/shared/utils/markdown_utils.dart';
+import 'package:drift/drift.dart';
+import 'package:stargazer/core/storage/database.dart';
 
 /// 日记创建/编辑 Provider
 final journalEditorProvider =

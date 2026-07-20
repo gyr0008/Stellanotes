@@ -15,7 +15,7 @@ class EntryRepository extends DatabaseAccessor<AppDatabase>
     final start = DateTime(date.year, date.month, date.day);
     final end = start.add(const Duration(days: 1));
     return (select(entries)
-          ..where((e) => e.createdAt.isBetween(start, end)))
+          ..where((e) => e.createdAt.isBetween(Constant(start), Constant(end))))
         .get();
   }
 
@@ -107,17 +107,18 @@ class EntryRepository extends DatabaseAccessor<AppDatabase>
   }
 
   // ─── 统计 ───────────────────────────────────────────
-  Future<int> getEntryCount() {
-    return (selectOnly(entries)..addColumns([entries.id.count()]))
+  Future<int> getEntryCount() async {
+    final count = await (selectOnly(entries)..addColumns([entries.id.count()]))
         .map((row) => row.read(entries.id.count()))
         .getSingle();
+    return count ?? 0;
   }
 
   Future<Map<DateTime, int>> getEntryCountByMonth(int year, int month) async {
     final start = DateTime(year, month, 1);
     final end = DateTime(year, month + 1, 1);
     final entriesList = await (select(entries)
-          ..where((e) => e.createdAt.isBetween(start, end)))
+          ..where((e) => e.createdAt.isBetween(Constant(start), Constant(end))))
         .get();
 
     final map = <DateTime, int>{};

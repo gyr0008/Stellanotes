@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/theme_provider.dart';
 import '../../../shared/widgets/frosted_card.dart';
 import 'particle_system.dart';
+import 'package:stargazer/core/theme/app_theme.dart';
 
 /// 星尘调色盘设置页面
 class ParticleColorSettingsPage extends ConsumerStatefulWidget {
@@ -426,7 +427,7 @@ class _ParticleColorSettingsPageState
       case RelationType.tagToEntry:
         return Icons.tag;
       case RelationType.constellationToConstellation:
-        return Icons.constellation;
+        return Icons.auto_awesome;
     }
   }
 }

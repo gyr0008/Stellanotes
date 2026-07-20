@@ -52,7 +52,7 @@ void main() {
       plugin = GitSyncPlugin(mgr);
     });
 
-    Future<void> _connect() => plugin.connect({
+    Future<SyncResult> _connect() => plugin.connect({
           'remoteUrl': 'https://example.com/repo.git',
           'remoteName': 'origin',
           'branch': 'main',
@@ -105,9 +105,12 @@ void main() {
       }
     });
 
-    test('status 如实反映为错误态', () async {
+    test('status 绝不谎报为已同步（未实现即非成功态）', () async {
       final status = await plugin.status();
-      expect(status.state, SyncState.error);
+      // D2 回归：未实现的 WebDAV 同步无论是否已连接，都绝不能谎报为"已同步/成功"。
+      // 真实状态可能是 offline（尚未连接）或 error（已连接但未实现），二者皆非成功，均符合要求。
+      expect(status.state, isNot(SyncState.synced),
+          reason: 'D2 回归失败：未实现的同步绝不能谎报为已同步');
     });
 
     test('推送返回"尚未实现"提示而非"成功"', () async {

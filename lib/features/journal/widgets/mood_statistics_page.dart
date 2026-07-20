@@ -5,6 +5,7 @@ import '../../../core/storage/storage_providers.dart';
 import '../../../core/storage/entry_repository.dart';
 import '../../../shared/widgets/frosted_card.dart';
 import '../../../core/theme/theme_provider.dart';
+import 'package:stargazer/core/theme/app_theme.dart';
 
 /// 情绪统计页面
 ///

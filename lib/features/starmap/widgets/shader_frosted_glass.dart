@@ -132,7 +132,7 @@ class FrostedGlassPainter extends CustomPainter {
     shader.setFloat(9, tint.red / 255.0);
     shader.setFloat(10, tint.green / 255.0);
     shader.setFloat(11, tint.blue / 255.0);
-    shader.setFloat(12, tint.alpha);
+    shader.setFloat(12, tint.alpha.toDouble());
     shader.setFloat(13, borderBrightness);
 
     canvas.drawRect(

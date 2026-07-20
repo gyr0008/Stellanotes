@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -101,13 +102,13 @@ class FileImageProvider extends ImageProvider<FileImageProvider> {
     );
   }
 
-  Future<Codec> _loadCodec(ImageDecoderCallback decode) async {
+  Future<ui.Codec> _loadCodec(ImageDecoderCallback decode) async {
     final path = await imageRepo.getImagePath(fileName);
     final file = File(path);
     if (!await file.exists()) {
       throw Exception('Image file not found: $path');
     }
     final bytes = await file.readAsBytes();
-    return decode(await ImmutableBuffer.fromUint8List(bytes));
+    return decode(await ui.ImmutableBuffer.fromUint8List(bytes));
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/theme_provider.dart';
 import '../../../core/storage/storage_providers.dart';
 import '../../../shared/widgets/frosted_card.dart';
+import 'package:stargazer/core/theme/app_theme.dart';
+import 'package:stargazer/core/storage/database.dart';
 
 /// 星座聚类服务
 class ConstellationClusteringService {
@@ -167,7 +169,6 @@ class _ConstellationNamingPageState
     return Scaffold(
       appBar: AppBar(
         title: const Text('星座发现'),
-        subtitle: const Text('自动聚类你的记忆'),
       ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
@@ -176,7 +177,7 @@ class _ConstellationNamingPageState
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.constellation, size: 64, color: Colors.white24),
+                      Icon(Icons.auto_awesome, size: 64, color: Colors.white24),
                       SizedBox(height: 16),
                       Text('还没有发现星座', style: TextStyle(color: Colors.white54)),
                       SizedBox(height: 8),
@@ -212,7 +213,7 @@ class _ConstellationNamingPageState
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Icon(
-                  Icons.constellation,
+                  Icons.auto_awesome,
                   color: theme.tagColor.color,
                   size: 28,
                 ),

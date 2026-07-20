@@ -21,7 +21,7 @@ class TodoRepository extends DatabaseAccessor<AppDatabase>
 
   Future<List<Todo>> getOverdueTodos() {
     // 简化：没有 dueDate 字段时返回空，后续可扩展
-    return [];
+    return Future.value(<Todo>[]);
   }
 
   Future<List<Todo>> getTodosByPriority(int priority) {
@@ -112,12 +112,13 @@ class TodoRepository extends DatabaseAccessor<AppDatabase>
   }
 
   // ─── 统计 ───────────────────────────────────────────
-  Future<int> getActiveTodoCount() {
-    return (selectOnly(todos)
+  Future<int> getActiveTodoCount() async {
+    final count = await (selectOnly(todos)
           ..addColumns([todos.id.count()])
           ..where(todos.done.equals(false)))
         .map((row) => row.read(todos.id.count()))
         .getSingle();
+    return count ?? 0;
   }
 
   Future<int> getCompletedTodayCount() async {
@@ -125,12 +126,13 @@ class TodoRepository extends DatabaseAccessor<AppDatabase>
     final start = DateTime(today.year, today.month, today.day);
     final end = start.add(const Duration(days: 1));
 
-    return (selectOnly(todos)
+    final count = await (selectOnly(todos)
           ..addColumns([todos.id.count()])
           ..where(todos.done.equals(true) &
               todos.completedAt.isBiggerOrEqualValue(start) &
               todos.completedAt.isSmallerThanValue(end)))
         .map((row) => row.read(todos.id.count()))
         .getSingle();
+    return count ?? 0;
   }
 }

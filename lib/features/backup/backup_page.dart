@@ -6,6 +6,7 @@ import '../../core/storage/storage_providers.dart';
 import '../../core/storage/image_repository.dart';
 import '../../shared/widgets/frosted_card.dart';
 import 'backup_service.dart';
+import 'package:stargazer/core/theme/theme_provider.dart';
 
 /// 数据备份页面
 class BackupPage extends ConsumerStatefulWidget {

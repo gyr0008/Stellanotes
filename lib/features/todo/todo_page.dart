@@ -4,6 +4,7 @@ import '../../core/storage/storage_providers.dart';
 import '../../core/storage/todo_repository.dart';
 import 'providers/todo_manager_provider.dart';
 import '../../shared/widgets/frosted_card.dart';
+import 'package:stargazer/core/storage/database.dart';
 
 class TodoPage extends ConsumerWidget {
   const TodoPage({super.key});

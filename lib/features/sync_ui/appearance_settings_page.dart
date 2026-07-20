@@ -258,7 +258,7 @@ class _AppearanceSettingsPageState extends ConsumerState<AppearanceSettingsPage>
                         ),
                       );
                     },
-                    '${value.toInt()}px',
+                    (v) => '${v.toInt()}px',
                   ),
                   _buildSlider(
                     '透明度',
@@ -273,7 +273,7 @@ class _AppearanceSettingsPageState extends ConsumerState<AppearanceSettingsPage>
                         ),
                       );
                     },
-                    '${(value * 100).toInt()}%',
+                    (v) => '${(v * 100).toInt()}%',
                   ),
                   const SizedBox(height: 8),
 

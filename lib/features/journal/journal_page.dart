@@ -6,6 +6,7 @@ import '../../core/storage/storage_providers.dart';
 import '../../core/storage/entry_repository.dart';
 import 'providers/journal_editor_provider.dart';
 import '../../shared/widgets/frosted_card.dart';
+import 'package:stargazer/core/storage/database.dart';
 
 class JournalPage extends ConsumerWidget {
   const JournalPage({super.key});

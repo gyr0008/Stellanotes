@@ -36,7 +36,7 @@ class Relations extends Table {
 // ─── 标签 ───────────────────────────────────────────────
 class Tags extends Table {
   IntColumn get id => integer().autoIncrement()();
-  TextColumn get name => text().withUnique()();
+  TextColumn get name => text().unique()();
   TextColumn get color => text().withDefault(const Constant('#9C27B0'))();
   TextColumn get icon => text().withDefault(const Constant('tag'))();
 }
