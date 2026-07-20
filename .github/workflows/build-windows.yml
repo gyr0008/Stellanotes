@@ -10,7 +10,11 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    # windows-latest 在 2026 年默认仅含 VS 2025（主版本 18），Flutter 3.24 的 cmakeGenerator
+    # 只识别到 VS 17，其余一律回退到 "Visual Studio 16 2019" 生成器，导致 CMake 找不到 VS 实例。
+    # 固定到 windows-2022 可保证装有 VS 2022 + Desktop C++ 工作负载，Flutter 选用
+    # "Visual Studio 17 2022" 生成器，构建正常。
+    runs-on: windows-2022
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
